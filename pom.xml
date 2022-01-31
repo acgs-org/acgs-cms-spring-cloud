@@ -8,11 +8,11 @@
     <artifactId>acgs-cms-spring-cloud</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-<!--    <modules>-->
-<!--        <module>gateway</module>-->
+    <modules>
+        <module>gateway</module>
 <!--        <module>login-service</module>-->
 <!--        <module>user-service</module>-->
-<!--    </modules>-->
+    </modules>
 
     <packaging>pom</packaging>
 

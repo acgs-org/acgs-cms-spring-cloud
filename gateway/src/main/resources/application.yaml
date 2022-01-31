@@ -1,0 +1,49 @@
+server:
+  port: 10010
+
+spring:
+  cloud:
+    gateway:
+      # 全局 CORS 跨域处理
+      globalcors:
+        # 允许所有的 Options 请求
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            # 允许跨域的网址
+            allowedOrigins:
+              - "http://localhost:3000"
+              - "http://localhost:4000"
+            # 允许跨域的请求方式
+            allowedMethods:
+              - "GET"
+              - "POST"
+              - "PUT"
+              - "DELETE"
+              - "OPTIONS"
+            # 允许跨域请求的头信息
+            allowedHeaders:
+              - "Content-Type"
+              - "Authorization"
+            # 是否允许携带 cookie
+            allowCredentials: true
+            # 本次跨域检测有效期
+            maxAge: 36000
+      # 访问路由配置
+      routes:
+        - id: login-service
+          uri: lb://login-service
+          predicates:
+            - Path=/login/**
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**
+
+acgs:
+  cms:
+    token:
+      token-secret: x88Wf09911241bdseh218db1eBYudb28271VT*dsadA2
+      token-access-expire: 3600
+      # 令牌刷新过期时间 1 个月
+      token-refresh-expire: 2592000
