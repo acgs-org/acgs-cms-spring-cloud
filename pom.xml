@@ -11,7 +11,7 @@
     <modules>
         <module>gateway</module>
         <module>login-service</module>
-<!--        <module>user-service</module>-->
+        <module>user-service</module>
     </modules>
 
     <packaging>pom</packaging>
