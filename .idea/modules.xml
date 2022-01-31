@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/acgs-cms-spring-cloud.iml" filepath="$PROJECT_DIR$/.idea/acgs-cms-spring-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
     </modules>
   </component>
 </project>
