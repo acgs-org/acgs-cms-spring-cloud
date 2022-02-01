@@ -2,8 +2,6 @@ package io.github.acgs.cms.token;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-
 /**
  * <p>
  *     双令牌模型类
@@ -18,11 +16,9 @@ import javax.validation.constraints.NotBlank;
 public class Tokens {
 
     /** 访问令牌 */
-    @NotBlank
     private String accessToken;
 
     /** 刷新令牌 */
-    @NotBlank
     private String refreshToken;
 
     public Tokens() {}

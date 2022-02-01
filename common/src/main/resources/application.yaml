@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      username: admin
+      password: admin
+      database: acgs
+
+acgs:
+  cms:
+    token:
+      token-secret: x88Wf09911241bdseh218db1eBYudb28271VT*dsadA2
+      token-access-expire: 3600
+      # 令牌刷新过期时间 1 个月
+      token-refresh-expire: 2592000

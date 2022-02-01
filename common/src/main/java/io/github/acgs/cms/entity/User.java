@@ -3,7 +3,9 @@ package io.github.acgs.cms.entity;
 import lombok.Data;
 import org.bson.types.ObjectId;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -41,9 +43,13 @@ public class User {
     private String phone;
 
     /** 用户邮箱 */
+    @Email(message = "{user.email.bad}")
     private String email;
 
     /** 用户头像 */
     private String img;
+
+    /** 创建时间 */
+    private LocalDateTime createDateTime;
 
 }
