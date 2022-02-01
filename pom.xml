@@ -13,6 +13,7 @@
         <module>login-service</module>
         <module>user-service</module>
         <module>register-service</module>
+        <module>common</module>
     </modules>
 
     <packaging>pom</packaging>
