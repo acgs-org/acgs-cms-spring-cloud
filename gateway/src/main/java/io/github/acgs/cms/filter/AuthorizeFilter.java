@@ -4,6 +4,7 @@ import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import io.github.acgs.cms.token.DoubleJWT;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.annotation.Order;
@@ -40,7 +41,7 @@ public class AuthorizeFilter implements GlobalFilter {
     }
 
     @Override
-    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+    public Mono<Void> filter(@NotNull ServerWebExchange exchange, GatewayFilterChain chain) {
         // 获取请求
         ServerHttpRequest request = exchange.getRequest();
         // 获取请求路径
@@ -70,8 +71,11 @@ public class AuthorizeFilter implements GlobalFilter {
         try {
             // 验证 Authorization 请求头中的数据
             String objectId = doubleJWT.decodeAccessToken(auth.get(0)).get("identity").asString();
-            // 获取到用户 id, 添加验证请求头信息
-            request.getHeaders().add(HttpHeaders.ALLOW, objectId);
+            // 获取到用户 id, 修改请求头信息
+            request.getHeaders().remove(HttpHeaders.AUTHORIZATION);
+            request.getHeaders().add(HttpHeaders.AUTHORIZATION, objectId);
+            // 打印响应日志信息
+            log.info("放行请求: [" + path + "]");
             // 放行请求
             return chain.filter(exchange);
         } catch (InvalidClaimException | TokenExpiredException e) {
