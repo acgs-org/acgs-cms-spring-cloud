@@ -12,6 +12,7 @@
         <module>gateway</module>
         <module>login-service</module>
         <module>user-service</module>
+        <module>register-service</module>
     </modules>
 
     <packaging>pom</packaging>
