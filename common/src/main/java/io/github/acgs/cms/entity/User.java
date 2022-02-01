@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * <p>
- *     用户注册信息实体类
+ *     用户信息模型类
  * </p>
  *
  * @author TierneyJohn@ACGS
