@@ -59,7 +59,6 @@ public class AuthorizeFilter implements GlobalFilter {
 
         // 获取请求头 Authorization 中的信息
         List<String> auth = request.getHeaders().get(HttpHeaders.AUTHORIZATION);
-        System.out.println(auth);
         if (Objects.isNull(auth) || Objects.equals(0, auth.size())) {
             // Authorization 请求头中数据不存在, 拒绝访问
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);

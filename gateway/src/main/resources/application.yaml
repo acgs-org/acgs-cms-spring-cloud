@@ -31,10 +31,16 @@ spring:
             maxAge: 36000
       # 访问路由配置
       routes:
+        - id: register-service
+          uri: lb://register-service
+          predicates:
+            - Path=/register/**
+
         - id: login-service
           uri: lb://login-service
           predicates:
             - Path=/login/**
+
         - id: user-service
           uri: lb://user-service
           predicates:
