@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class DoubleJWTTest {
 
-    /** 双令牌生成器 */
+    /** 导入双令牌生成器 */
     @Autowired
     private DoubleJWT jwt;
 

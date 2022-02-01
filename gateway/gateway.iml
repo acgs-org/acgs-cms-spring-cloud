@@ -113,6 +113,7 @@
     <orderEntry type="library" name="Maven: com.google.j2objc:j2objc-annotations:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.mojo:animal-sniffer-annotations:1.14" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.15" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.12.4" level="project" />
     <orderEntry type="library" name="Maven: io.prometheus:simpleclient:0.10.0" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba.spring:spring-context-support:1.0.10" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-commons:3.0.2" level="project" />
@@ -126,6 +127,9 @@
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-mongodb:3.2.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.9" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.5.4" level="project" />
+    <orderEntry type="library" name="Maven: com.auth0:java-jwt:3.18.3" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.12.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.12.4" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains:annotations:22.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.20" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-configuration-processor:2.5.4" level="project" />
@@ -156,9 +160,5 @@
     <orderEntry type="library" name="Maven: io.netty:netty-handler-proxy:4.1.67.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-codec-socks:4.1.67.Final" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webflux:5.3.9" level="project" />
-    <orderEntry type="library" name="Maven: com.auth0:java-jwt:3.18.3" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.12.4" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.12.4" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.12.4" level="project" />
   </component>
 </module>
