@@ -27,8 +27,4 @@ public class ResponseVO {
 
     /** 异常信息封装 */
     private List<String> errors;
-
-    public ResponseVO() {
-        this.code = 200;
-    }
 }

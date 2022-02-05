@@ -17,11 +17,35 @@
     </properties>
 
     <dependencies>
-
+        <!-- 项目 common 依赖导入 -->
         <dependency>
             <groupId>io.github.acgs-org</groupId>
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.acgs-org</groupId>
+            <artifactId>common-feign</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- SpringBoot MVC 相关依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- SpringBoot Test 相关依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <!-- MongoDB 相关依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
     </dependencies>

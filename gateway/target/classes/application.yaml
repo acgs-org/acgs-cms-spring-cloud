@@ -1,6 +1,3 @@
-server:
-  port: 10010
-
 spring:
   cloud:
     gateway:
@@ -31,19 +28,11 @@ spring:
             maxAge: 36000
       # 访问路由配置
       routes:
-        - id: login-service
-          uri: lb://login-service
+        - id: authorization
+          uri: lb://authorization
           predicates:
-            - Path=/login/**
+            - Path=/authorization/**
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/user/**
-
-acgs:
-  cms:
-    token:
-      token-secret: x88Wf09911241bdseh218db1eBYudb28271VT*dsadA2
-      token-access-expire: 3600
-      # 令牌刷新过期时间 1 个月
-      token-refresh-expire: 2592000

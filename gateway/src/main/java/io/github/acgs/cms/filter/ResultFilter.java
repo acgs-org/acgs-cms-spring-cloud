@@ -1,6 +1,6 @@
 package io.github.acgs.cms.filter;
 
-import io.github.acgs.cms.token.DoubleJWT;
+import io.github.acgs.cms.client.AuthorizationClient;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -30,11 +30,11 @@ import java.util.Objects;
 @Component
 public class ResultFilter implements GlobalFilter {
 
-    /** JWT 令牌校验器 */
-    private final DoubleJWT doubleJWT;
+    /** 导入身份验证服务 feign 接口客户端 */
+    private final AuthorizationClient authorizationClient;
 
-    public ResultFilter(DoubleJWT doubleJWT) {
-        this.doubleJWT = doubleJWT;
+    public ResultFilter(AuthorizationClient authorizationClient) {
+        this.authorizationClient = authorizationClient;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ResultFilter implements GlobalFilter {
         List<String> headers = response.getHeaders().get(HttpHeaders.AUTHORIZATION);
         if (Objects.nonNull(headers) && !Objects.equals(0, headers.size())) {
             // 存在相应的请求头数据 生成新的 access_token
-            String accessToken = doubleJWT.generateAccessToken(headers.get(0));
+            String accessToken = authorizationClient.getAccessToken(headers.get(0));
             // 修改请求头信息
             response.getHeaders().remove(HttpHeaders.AUTHORIZATION);
             response.getHeaders().add(HttpHeaders.AUTHORIZATION, accessToken);

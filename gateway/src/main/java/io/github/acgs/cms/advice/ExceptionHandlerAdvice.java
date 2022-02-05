@@ -1,7 +1,7 @@
 package io.github.acgs.cms.advice;
 
-import io.github.acgs.cms.exception.UserException;
-import io.github.acgs.cms.exception.ValidatedException;
+import io.github.acgs.cms.common.exception.UserException;
+import io.github.acgs.cms.common.exception.ValidatedException;
 import io.github.acgs.cms.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;

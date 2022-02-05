@@ -1,9 +1,8 @@
 package io.github.acgs.cms.filter;
 
-import com.auth0.jwt.exceptions.InvalidClaimException;
-import com.auth0.jwt.exceptions.TokenExpiredException;
-import io.github.acgs.cms.token.DoubleJWT;
+import io.github.acgs.cms.client.AuthorizationClient;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -33,11 +32,11 @@ import java.util.Objects;
 @Component
 public class AuthorizeFilter implements GlobalFilter {
 
-    /** JWT 令牌校验器 */
-    private final DoubleJWT doubleJWT;
+    /** 导入身份验证服务 feign 接口客户端 */
+    private final AuthorizationClient authorizationClient;
 
-    public AuthorizeFilter(DoubleJWT doubleJWT) {
-        this.doubleJWT = doubleJWT;
+    public AuthorizeFilter(AuthorizationClient authorizationClient) {
+        this.authorizationClient = authorizationClient;
     }
 
     @Override
@@ -48,9 +47,9 @@ public class AuthorizeFilter implements GlobalFilter {
         String path = request.getPath().toString();
 
         // 登录请求访问路径
-        String LOGIN_PATH = "/login";
+        String LOGIN_PATH = "/user/login";
         // 注册请求访问路径
-        String REGISTER_PATH = "/register";
+        String REGISTER_PATH = "/user/register";
 
         if (Objects.equals(LOGIN_PATH, path) || Objects.equals(REGISTER_PATH, path)) {
             // 当前请求为 登录 或 注册 请求
@@ -68,18 +67,21 @@ public class AuthorizeFilter implements GlobalFilter {
             return exchange.getResponse().setComplete();
         }
 
-        try {
-            // 验证 Authorization 请求头中的数据
-            String objectId = doubleJWT.decodeAccessToken(auth.get(0)).get("identity").asString();
-            // 获取到用户 id, 修改请求头信息
+        // 验证 Authorization 中的信息
+        ObjectId id = authorizationClient.verificationAccessToken(auth.get(0));
+
+        if (Objects.nonNull(id)) {
+            // 获取到 Authorization 中的用户 id
+            // 修改请求头信息
             request.getHeaders().remove(HttpHeaders.AUTHORIZATION);
-            request.getHeaders().add(HttpHeaders.AUTHORIZATION, objectId);
+            request.getHeaders().add(HttpHeaders.AUTHORIZATION, id.toString());
             // 打印响应日志信息
             log.info("放行请求: [" + path + "]");
             // 放行请求
             return chain.filter(exchange);
-        } catch (InvalidClaimException | TokenExpiredException e) {
-            log.warn("Token 验证失败: " + e.getMessage());
+        } else {
+            // 令牌失效，打印日志信息
+            log.info("Token 令牌失效");
             // 拒绝访问
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             // 拦截请求

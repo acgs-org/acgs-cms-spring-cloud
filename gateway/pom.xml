@@ -17,26 +17,30 @@
     </properties>
 
     <dependencies>
-
+        <!-- 项目 common 依赖导入 -->
         <dependency>
             <groupId>io.github.acgs-org</groupId>
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <!-- SpringBoot 自定义配置 相关依赖 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
+            <groupId>io.github.acgs-org</groupId>
+            <artifactId>common-feign</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!-- Spring MVC 相关依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
 
         <!-- 网关 gateway 依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-
     </dependencies>
 
 </project>

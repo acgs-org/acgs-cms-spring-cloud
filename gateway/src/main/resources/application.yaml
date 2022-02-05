@@ -28,16 +28,10 @@ spring:
             maxAge: 36000
       # 访问路由配置
       routes:
-        - id: register-service
-          uri: lb://register-service
+        - id: authorization
+          uri: lb://authorization
           predicates:
-            - Path=/register/**
-
-        - id: login-service
-          uri: lb://login-service
-          predicates:
-            - Path=/login/**
-
+            - Path=/authorization/**
         - id: user-service
           uri: lb://user-service
           predicates:
