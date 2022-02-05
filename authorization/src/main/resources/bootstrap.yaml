@@ -1,7 +1,11 @@
+# 配置端口信息
+server:
+  port: 6000
+
 spring:
   application:
     # 服务名称
-    name: register-service
+    name: authorization
   profiles:
     # 当前环境
     active: dev
