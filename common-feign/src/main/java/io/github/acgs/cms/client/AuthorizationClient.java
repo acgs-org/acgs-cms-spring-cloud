@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * <p>
- *     身份验证服务 feign 接口客户端
+ *     身份验证服务 feign 客户端接口
  * </p>
- *
  * @author TierneyJohn@ACGS
  * <p>
  * file created on 2022/2/5
@@ -23,7 +22,6 @@ public interface AuthorizationClient {
      * <p>
      *     获取双令牌方法
      * </p>
-     *
      * @param id 用于加密的用户 id
      * @return 双令牌封装类
      */
@@ -44,7 +42,6 @@ public interface AuthorizationClient {
      * <p>
      *     验证 access_token 方法
      * </p>
-     *
      * @param auth access_token 令牌
      * @return 解密后的用户 id
      */

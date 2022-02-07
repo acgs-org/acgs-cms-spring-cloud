@@ -13,15 +13,16 @@
         <module>common</module>
         <module>common-feign</module>
         <module>gateway</module>
+        <module>role-service</module>
         <module>user-service</module>
     </modules>
 
     <packaging>pom</packaging>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.4</version>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-parent</artifactId>
+        <version>2020.0.4</version>
     </parent>
 
     <properties>
@@ -37,12 +38,12 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2020.0.2</version>
+                <version>2020.0.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
-            <!-- Nacos 依赖 -->
+            <!-- SpringCloud Alibaba 依赖 -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>

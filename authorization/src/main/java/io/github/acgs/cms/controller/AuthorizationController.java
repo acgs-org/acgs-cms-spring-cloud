@@ -64,6 +64,7 @@ public class AuthorizationController {
      */
     @GetMapping("/access/{auth}")
     public ObjectId verificationAccessToken(@PathVariable("auth") String auth) {
+        System.out.println(auth);
         return jwt.decodeAccessToken(auth).get("identity").as(ObjectId.class);
     }
 

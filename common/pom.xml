@@ -17,6 +17,12 @@
     </properties>
 
     <dependencies>
+        <!-- Spring 相关依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
         <!-- SpringCloud bootstrap配置文件 相关依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

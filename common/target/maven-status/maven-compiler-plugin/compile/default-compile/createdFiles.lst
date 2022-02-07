@@ -1,0 +1,4 @@
+io/github/acgs/cms/common/exception/RoleException.class
+io/github/acgs/cms/common/exception/UserException.class
+io/github/acgs/cms/common/exception/BaseException.class
+io/github/acgs/cms/common/exception/ValidatedException.class

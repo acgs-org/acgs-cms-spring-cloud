@@ -4,7 +4,6 @@ package io.github.acgs.cms.token;
  * <p>
  *     双令牌模型类
  * </p>
- *
  * @author TierneyJohn@ACGS
  * <p>
  * file created on 2022/1/30

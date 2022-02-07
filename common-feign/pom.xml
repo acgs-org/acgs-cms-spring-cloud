@@ -23,6 +23,12 @@
             <artifactId>bson</artifactId>
         </dependency>
 
+        <!-- SpringCloud loadbalancer配置 相关依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
         <!-- Feign 依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

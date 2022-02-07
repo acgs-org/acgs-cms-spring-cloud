@@ -1,10 +1,10 @@
 package io.github.acgs.cms.controller;
 
+import io.github.acgs.cms.client.RoleServiceClient;
 import io.github.acgs.cms.common.exception.UserException;
 import io.github.acgs.cms.common.exception.ValidatedException;
-import io.github.acgs.cms.entity.Role;
+import io.github.acgs.cms.role.Role;
 import io.github.acgs.cms.entity.User;
-import io.github.acgs.cms.repository.RoleRepository;
 import io.github.acgs.cms.repository.UserRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.validation.BindingResult;
@@ -31,16 +31,16 @@ import java.util.Objects;
 @RequestMapping("/user")
 public class RegisterController {
 
-    /** 导入角色信息仓储对象 */
-    private final RoleRepository roleRepository;
-
     /** 导入用户信息仓储对象 */
     private final UserRepository userRepository;
 
+    /** 导入角色信息服务 feign 接口客户端 */
+    private final RoleServiceClient roleServiceClient;
 
-    public RegisterController(RoleRepository roleRepository, UserRepository userRepository) {
-        this.roleRepository = roleRepository;
+
+    public RegisterController(UserRepository userRepository, RoleServiceClient roleServiceClient) {
         this.userRepository = userRepository;
+        this.roleServiceClient = roleServiceClient;
     }
 
     /**
@@ -68,9 +68,14 @@ public class RegisterController {
             throw new UserException(60011);
         }
         // 获取角色信息
-        Role role = roleRepository.findRoleByName(validator.getRole());
+        String roleName = validator.getRoles().get(0);
+        if (Objects.isNull(roleName)) {
+            // 没有获取到任何角色信息，注册失败
+            throw new UserException(60012);
+        }
+        Role role = roleServiceClient.getRoleByName(roleName);
         if (Objects.isNull(role)) {
-            // 没有获取到角色信息 注册失败
+            // 角色信息异常 注册失败
             throw new UserException(60012);
         }
         // 符合预期值 保存用户信息

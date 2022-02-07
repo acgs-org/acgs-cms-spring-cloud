@@ -8,10 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="authorization" />
+        <module name="user-service" />
         <module name="common" />
         <module name="common-feign" />
-        <module name="user-service" />
         <module name="gateway" />
+        <module name="role-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +24,7 @@
       <module name="gateway" target="15" />
       <module name="login-service" target="15" />
       <module name="register-service" target="15" />
+      <module name="role-service" target="15" />
       <module name="user-service" target="15" />
     </bytecodeTargetLevel>
   </component>
@@ -35,6 +37,7 @@
       <module name="gateway" options="-parameters" />
       <module name="login-service" options="-parameters" />
       <module name="register-service" options="-parameters" />
+      <module name="role-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>

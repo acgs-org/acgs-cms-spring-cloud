@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -33,7 +34,7 @@ public class User {
 
     /** 所属角色 */
     @NotBlank(message = "{user.role.not-blank}")
-    private String role;
+    private List<String> roles;
 
     /** 用户昵称 */
     @NotBlank(message = "{user.nick.not-blank}")

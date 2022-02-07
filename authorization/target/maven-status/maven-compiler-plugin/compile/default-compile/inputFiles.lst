@@ -1,0 +1,8 @@
+/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/authorization/src/main/java/io/github/acgs/cms/util/DateUtil.java
+/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/authorization/src/main/java/io/github/acgs/cms/configuration/TokenBeanConfiguration.java
+/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/authorization/src/main/java/io/github/acgs/cms/token/Tokens.java
+/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/authorization/src/main/java/io/github/acgs/cms/token/DoubleJWT.java
+/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/authorization/src/main/java/io/github/acgs/cms/AuthorizationApplication.java
+/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/authorization/src/main/java/io/github/acgs/cms/configuration/TokenProperties.java
+/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/authorization/src/main/java/io/github/acgs/cms/token/TokenConstant.java
+/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/authorization/src/main/java/io/github/acgs/cms/controller/AuthorizationController.java

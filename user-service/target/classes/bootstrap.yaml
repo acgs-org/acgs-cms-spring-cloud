@@ -1,6 +1,6 @@
 # 配置端口信息
 server:
-  port: 6010
+  port: 6020
 
 spring:
   application:

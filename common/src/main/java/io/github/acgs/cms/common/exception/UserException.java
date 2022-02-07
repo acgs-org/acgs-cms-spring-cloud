@@ -13,12 +13,9 @@ import lombok.Getter;
  * </p>
  */
 @Getter
-public class UserException extends RuntimeException {
-
-    /** 异常状态码 */
-    private final Integer code;
+public class UserException extends BaseException {
 
     public UserException(Integer code) {
-        this.code = code;
+        super(code);
     }
 }
