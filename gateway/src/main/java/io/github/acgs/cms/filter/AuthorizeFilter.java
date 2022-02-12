@@ -27,7 +27,7 @@ import java.util.Objects;
  * file created on 2022/1/30
  * </p>
  */
-@Order(-1)
+@Order(1)
 @Slf4j
 @Component
 public class AuthorizeFilter implements GlobalFilter {

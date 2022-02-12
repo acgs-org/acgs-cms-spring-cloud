@@ -29,10 +29,10 @@ spring:
       # 访问路由配置
       routes:
         # 权限校验模块
-        - id: authorization
-          uri: lb://authorization
+        - id: auth-service
+          uri: lb://auth-service
           predicates:
-            - Path=/authorization/**
+            - Path=/**
         # 角色服务模块
         - id: role-service
           uri: lb://role-service

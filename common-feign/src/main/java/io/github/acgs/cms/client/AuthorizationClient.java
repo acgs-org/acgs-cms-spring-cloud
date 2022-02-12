@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * file created on 2022/2/5
  * </p>
  */
-@FeignClient("authorization")
+@FeignClient(name = "auth-service")
 public interface AuthorizationClient {
 
     /**
@@ -25,7 +25,7 @@ public interface AuthorizationClient {
      * @param id 用于加密的用户 id
      * @return 双令牌封装类
      */
-    @GetMapping("/tokens/{id}")
+    @GetMapping("/authorization/tokens/{id}")
     Tokens getTokens(@PathVariable("id") String id);
 
     /**
@@ -35,7 +35,7 @@ public interface AuthorizationClient {
      * @param id 用于加密的用户 id
      * @return access_token
      */
-    @GetMapping("/token/access/{id}")
+    @GetMapping("/authorization/token/access/{id}")
     String getAccessToken(@PathVariable("id") String id);
 
     /**
@@ -45,7 +45,7 @@ public interface AuthorizationClient {
      * @param auth access_token 令牌
      * @return 解密后的用户 id
      */
-    @GetMapping("/access/{auth}")
+    @GetMapping("/authorization/access/{auth}")
     ObjectId verificationAccessToken(@PathVariable("auth") String auth);
 
     /**
@@ -55,6 +55,6 @@ public interface AuthorizationClient {
      * @param auth refresh_token 令牌
      * @return 解密后的用户 id
      */
-    @GetMapping("/refresh/{auth}")
+    @GetMapping("/authorization/refresh/{auth}")
     ObjectId verificationRefreshToken(@PathVariable("auth") String auth);
 }

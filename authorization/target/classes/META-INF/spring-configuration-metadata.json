@@ -11,22 +11,19 @@
       "name": "acgs.cms.token.token-access-expire",
       "type": "java.lang.Long",
       "description": "令牌访问过期时间",
-      "sourceType": "io.github.acgs.cms.configuration.TokenProperties",
-      "defaultValue": 3600
+      "sourceType": "io.github.acgs.cms.configuration.TokenProperties"
     },
     {
       "name": "acgs.cms.token.token-refresh-expire",
       "type": "java.lang.Long",
       "description": "令牌刷新过期时间",
-      "sourceType": "io.github.acgs.cms.configuration.TokenProperties",
-      "defaultValue": 2592000
+      "sourceType": "io.github.acgs.cms.configuration.TokenProperties"
     },
     {
       "name": "acgs.cms.token.token-secret",
       "type": "java.lang.String",
       "description": "令牌密匙",
-      "sourceType": "io.github.acgs.cms.configuration.TokenProperties",
-      "defaultValue": ""
+      "sourceType": "io.github.acgs.cms.configuration.TokenProperties"
     }
   ],
   "hints": []
