@@ -1,18 +1,16 @@
 package io.github.acgs.cms.controller;
 
 import io.github.acgs.cms.client.RoleServiceClient;
+import io.github.acgs.cms.common.exception.RoleException;
 import io.github.acgs.cms.common.exception.UserException;
 import io.github.acgs.cms.common.exception.ValidatedException;
-import io.github.acgs.cms.role.Role;
 import io.github.acgs.cms.entity.User;
 import io.github.acgs.cms.repository.UserRepository;
+import io.github.acgs.cms.role.Role;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -65,22 +63,29 @@ public class RegisterController {
         User user = userRepository.findUserByUsername(validator.getUsername());
         if (Objects.nonNull(user)) {
             // 已获取到指定用户 注册失败
-            throw new UserException(60011);
+            throw new UserException(60202, "账号已存在");
         }
         // 获取角色信息
         String roleName = validator.getRoles().get(0);
         if (Objects.isNull(roleName)) {
             // 没有获取到任何角色信息，注册失败
-            throw new UserException(60012);
+            throw new UserException(60203, "没有所属角色");
         }
         Role role = roleServiceClient.getRoleByName(roleName);
         if (Objects.isNull(role)) {
             // 角色信息异常 注册失败
-            throw new UserException(60012);
+            throw new RoleException(60101, "角色不存在");
         }
         // 符合预期值 保存用户信息
         validator.setCreateDateTime(LocalDateTime.now());
         userRepository.save(validator);
         return true;
+    }
+
+    @GetMapping("/test")
+    public Role test() {
+        Role role = roleServiceClient.getRoleByName("root");
+        System.out.println(role);
+        return role;
     }
 }

@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/acgs-cms-spring-cloud.iml" filepath="$PROJECT_DIR$/.idea/acgs-cms-spring-cloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/authorization/authorization.iml" filepath="$PROJECT_DIR$/authorization/authorization.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-auth/common-auth.iml" filepath="$PROJECT_DIR$/common-auth/common-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/common-feign/common-feign.iml" filepath="$PROJECT_DIR$/common-feign/common-feign.iml" />
       <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/role-service/role-service.iml" filepath="$PROJECT_DIR$/role-service/role-service.iml" />

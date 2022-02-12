@@ -1,6 +1,7 @@
 package io.github.acgs.cms.common.exception;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.validation.ObjectError;
 
 import java.util.List;
@@ -16,12 +17,9 @@ import java.util.List;
  * </p>
  */
 @Getter
+@RequiredArgsConstructor
 public class ValidatedException extends RuntimeException {
 
     /** 参数校验异常集合 */
     private final List<ObjectError> errors;
-
-    public ValidatedException(List<ObjectError> errors) {
-        this.errors = errors;
-    }
 }

@@ -1,5 +1,7 @@
 package io.github.acgs.cms.common.exception;
 
+import lombok.Builder;
+
 /**
  * <p>
  *     角色相关异常类
@@ -12,7 +14,7 @@ package io.github.acgs.cms.common.exception;
  */
 public class RoleException extends BaseException {
 
-    public RoleException(Integer code) {
-        super(code);
+    public RoleException(Integer code, String message) {
+        super(code, message);
     }
 }

@@ -1,0 +1,6 @@
+acgs:
+  cms:
+    token:
+      token-secret: x88Wf09911241bdseh218db1eBYudb28271VT*dsadA2
+      token-access-expire: 3600
+      token-refresh-expire: 2592000

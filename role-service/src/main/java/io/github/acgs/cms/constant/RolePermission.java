@@ -11,7 +11,7 @@ package io.github.acgs.cms.constant;
  */
 public enum RolePermission {
     /**
-     * Root 权限，对于项目的所有功能均可访问，项目唯一
+     * ROOT 权限，对于项目的所有功能均可访问，项目唯一
      */
     ROOT,
     /**

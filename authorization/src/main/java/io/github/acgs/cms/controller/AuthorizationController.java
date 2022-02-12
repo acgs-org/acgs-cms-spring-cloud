@@ -27,6 +27,8 @@ public class AuthorizationController {
 
     public AuthorizationController(DoubleJWT jwt) {
         this.jwt = jwt;
+        ObjectId id = new ObjectId();
+        System.out.println(jwt.generateAccessToken(id.toHexString()));
     }
 
     /**

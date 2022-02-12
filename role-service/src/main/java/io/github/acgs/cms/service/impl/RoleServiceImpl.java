@@ -5,6 +5,7 @@ import io.github.acgs.cms.constant.RolePermission;
 import io.github.acgs.cms.entity.Role;
 import io.github.acgs.cms.repository.RoleRepository;
 import io.github.acgs.cms.service.RoleService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import static io.github.acgs.cms.constant.RoleNameSuffix.*;
  * file created on 2022/2/7
  * </p>
  */
+@Slf4j
 @Service
 public class RoleServiceImpl implements RoleService {
 
@@ -33,18 +35,22 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void initDatabase() {
+        log.info("初始化角色数据信息");
         if (Objects.isNull(roleRepository.findRoleByName("root"))) {
             Role root = new Role();
             root.setName("root");
             root.setPermission(RolePermission.ROOT);
             roleRepository.save(root);
+            log.info("载入 root 角色信息");
         }
         if (Objects.isNull(roleRepository.findRoleByName("admin"))) {
+            log.info("载入 admin 角色信息");
             Role admin = new Role();
             admin.setName("admin");
             admin.setPermission(RolePermission.ALL);
             roleRepository.save(admin);
         }
+        log.info("角色信息初始化成功");
     }
 
     @Override
@@ -61,11 +67,11 @@ public class RoleServiceImpl implements RoleService {
     public boolean addRole(String roleName) {
         if (Objects.equals("root", roleName) || Objects.equals("admin", roleName)) {
             // root 角色 与 admin 角色 不允许被创建
-            throw new RoleException(60103);
+            throw new RoleException(60103, "不可创建该角色");
         }
         if (Objects.nonNull(roleRepository.findRoleByName(roleName))) {
             // 该角色名称已存在
-            throw new RoleException(60102);
+            throw new RoleException(60102, "角色已存在");
         }
         // 创建基本角色对象
         Role role = new Role();
@@ -95,11 +101,11 @@ public class RoleServiceImpl implements RoleService {
     public boolean removeRole(String roleName) {
         if (Objects.equals("root", roleName) || Objects.equals("admin", roleName)) {
             // root 角色 与 admin 角色 不允许被删除
-            throw new RoleException(60104);
+            throw new RoleException(60104, "不可删除该角色");
         }
         if (Objects.isNull(roleRepository.findRoleByName(roleName))) {
             // 该角色名称不存在
-            throw new RoleException(60101);
+            throw new RoleException(60101, "角色不存在");
         }
         // 删除响应角色信息
         roleRepository.deleteRoleByName(roleName);

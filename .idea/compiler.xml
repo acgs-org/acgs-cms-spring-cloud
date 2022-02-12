@@ -8,17 +8,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="authorization" />
-        <module name="user-service" />
         <module name="common" />
         <module name="common-feign" />
-        <module name="gateway" />
         <module name="role-service" />
+        <module name="common-auth" />
+        <module name="user-service" />
+        <module name="gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="acgs-cms-spring-cloud" target="15" />
       <module name="authorization" target="15" />
       <module name="common" target="15" />
+      <module name="common-auth" target="15" />
       <module name="common-feign" target="15" />
       <module name="common-old" target="15" />
       <module name="gateway" target="15" />
@@ -32,6 +34,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="authorization" options="-parameters" />
       <module name="common" options="-parameters" />
+      <module name="common-auth" options="-parameters" />
       <module name="common-feign" options="-parameters" />
       <module name="common-old" options="-parameters" />
       <module name="gateway" options="-parameters" />

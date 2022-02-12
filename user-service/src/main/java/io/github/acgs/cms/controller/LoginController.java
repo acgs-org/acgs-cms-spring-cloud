@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
@@ -27,6 +28,7 @@ import java.util.Objects;
  * </p>
  */
 @RestController
+@RequestMapping("/user")
 public class LoginController {
 
     /** 导入用户信息仓储层对象 */
@@ -60,12 +62,12 @@ public class LoginController {
         User user = userRepository.findUserByUsername(validator.getUsername());
         if (Objects.isNull(user)) {
             // 没有获取到指定用户 账号不存在
-            throw new UserException(60001);
+            throw new UserException(60201, "账号不存在");
         }
         // 验证密码信息
         if (!Objects.equals(validator.getPassword(), user.getPassword())) {
             // 验证失败 密码不正确
-            throw new UserException(60002);
+            throw new UserException(60204, "密码错误");
         }
         // 验证成功，发送 token 数据
         return authorizationClient.getTokens(user.getId().toString());

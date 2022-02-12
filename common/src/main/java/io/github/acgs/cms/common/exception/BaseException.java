@@ -1,6 +1,7 @@
 package io.github.acgs.cms.common.exception;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * <p>
@@ -13,12 +14,12 @@ import lombok.Getter;
  * </p>
  */
 @Getter
+@RequiredArgsConstructor
 public class BaseException extends RuntimeException {
 
     /** 自定义异常码 */
     private final Integer code;
 
-    public BaseException(Integer code) {
-        this.code = code;
-    }
+    /** 自定义异常信息 */
+    private final String message;
 }

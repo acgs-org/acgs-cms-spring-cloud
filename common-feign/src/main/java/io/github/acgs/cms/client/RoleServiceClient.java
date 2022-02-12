@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * file created on 2022/2/7
  * </p>
  */
-@FeignClient("role-service")
+@FeignClient(name = "role-service", path = "/role")
 public interface RoleServiceClient {
 
     /**
