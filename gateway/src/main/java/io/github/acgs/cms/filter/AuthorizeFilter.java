@@ -38,7 +38,7 @@ public class AuthorizeFilter implements GlobalFilter {
     /** 导入双令牌构造器 */
     private final DoubleJWT jwt;
 
-    public AuthorizeFilter(DoubleJWT jwt) {
+    public AuthorizeFilter(@NotNull DoubleJWT jwt) {
         this.jwt = jwt;
         log.info("生成测试令牌: " + jwt.generateAccessToken(new ObjectId().toHexString()));
     }

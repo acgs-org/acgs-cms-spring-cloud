@@ -31,6 +31,7 @@ public class RoleServiceImpl implements RoleService {
 
     public RoleServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
+        this.initDatabase();
     }
 
     @Override
@@ -44,11 +45,11 @@ public class RoleServiceImpl implements RoleService {
             log.info("载入 root 角色信息");
         }
         if (Objects.isNull(roleRepository.findRoleByName("admin"))) {
-            log.info("载入 admin 角色信息");
             Role admin = new Role();
             admin.setName("admin");
             admin.setPermission(RolePermission.ALL);
             roleRepository.save(admin);
+            log.info("载入 admin 角色信息");
         }
         log.info("角色信息初始化成功");
     }

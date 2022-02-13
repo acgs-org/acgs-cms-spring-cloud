@@ -5,6 +5,7 @@ import io.github.acgs.cms.service.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,16 +22,11 @@ import java.util.List;
 @Api(tags = {"角色信息接口"})
 @RestController
 @RequestMapping("/role")
+@RequiredArgsConstructor
 public class RoleController {
 
     /** 导入角色信息服务类对象 */
     private final RoleService roleService;
-
-    public RoleController(RoleService roleService) {
-        this.roleService = roleService;
-        // 初始化数据库数据
-        this.roleService.initDatabase();
-    }
 
     /**
      * <p>

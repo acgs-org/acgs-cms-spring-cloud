@@ -29,7 +29,7 @@ import java.util.List;
  */
 @EnableOpenApi
 @Configuration
-public class SwaggerConfig implements WebMvcConfigurer {
+public class GlobalSwaggerConfig implements WebMvcConfigurer {
 
     @Bean
     public Docket createRestApi() {

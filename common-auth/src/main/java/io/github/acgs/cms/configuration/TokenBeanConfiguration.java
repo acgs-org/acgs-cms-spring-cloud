@@ -11,7 +11,6 @@ import java.util.Objects;
  * <p>
  *     Token Bean 自动注入配置
  * </p>
- *
  * @author TierneyJohn@ACGS
  * <p>
  * file created on 2022/1/31

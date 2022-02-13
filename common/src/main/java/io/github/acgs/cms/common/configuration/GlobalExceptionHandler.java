@@ -1,6 +1,7 @@
 package io.github.acgs.cms.common.configuration;
 
 import io.github.acgs.cms.common.exception.BaseException;
+import io.github.acgs.cms.common.exception.ValidatedException;
 import io.github.acgs.cms.common.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -35,6 +36,21 @@ public class GlobalExceptionHandler {
                 .builder()
                 .code(error.getCode())
                 .message(error.getMessage())
+                .result(null)
+                .success(false)
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(ValidatedException.class)
+    public ResponseVO<?> ValidatedException(@NotNull ValidatedException error) {
+        error.getErrors().forEach(e -> log.warn("参数校验异常: " + e.getDefaultMessage()));
+        return ResponseVO
+                .builder()
+                .code(10000)
+                .message("参数校验异常")
                 .result(null)
                 .success(false)
                 .timestamp(LocalDateTime.now())

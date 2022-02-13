@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * <p>
  *     双令牌验证测试类
  * </p>
- *
  * @author TierneyJohn@ACGS
  * <p>
  * file created on 2022/2/1
@@ -53,7 +52,5 @@ class DoubleJWTTest {
         // 校验检验结果
         assertEquals(accessId, refreshId);
     }
-
-
 
 }
