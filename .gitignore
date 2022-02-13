@@ -1,2 +1,8 @@
 /.idea/
-/**/target/
+/common/target/
+/common-auth/target/
+/common-feign/target/
+/authorization/target/
+/gateway/target/
+/role-service/target/
+/user-service/target/
