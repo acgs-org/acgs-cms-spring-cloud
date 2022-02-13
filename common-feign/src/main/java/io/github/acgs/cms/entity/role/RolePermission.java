@@ -1,4 +1,4 @@
-package io.github.acgs.cms.role;
+package io.github.acgs.cms.entity.role;
 
 /**
  * <p>

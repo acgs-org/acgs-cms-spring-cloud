@@ -1,6 +1,8 @@
 package io.github.acgs.cms.client;
 
-import io.github.acgs.cms.role.Role;
+import io.github.acgs.cms.common.annotation.FeignLog;
+import io.github.acgs.cms.entity.role.Role;
+import io.github.acgs.cms.vo.ResponseVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,8 @@ public interface RoleServiceClient {
      * @return 角色信息
      */
     @GetMapping("/{roleName}")
-    Role getRoleByName(@PathVariable("roleName") String roleName);
+    @FeignLog
+    ResponseVO<Role> getRoleByName(@PathVariable("roleName") String roleName);
 
     /**
      * <p>
@@ -37,7 +40,8 @@ public interface RoleServiceClient {
      * @return 添加结果
      */
     @PostMapping("/{roleName}")
-    Boolean add(@PathVariable("roleName") String roleName);
+    @FeignLog
+    ResponseVO<Role> add(@PathVariable("roleName") String roleName);
 
     /**
      * <p>
@@ -47,5 +51,6 @@ public interface RoleServiceClient {
      * @return 删除结果
      */
     @DeleteMapping("/{roleName}")
-    Boolean remove(@PathVariable("roleName") String roleName);
+    @FeignLog
+    ResponseVO<Boolean> remove(@PathVariable("roleName") String roleName);
 }

@@ -4,9 +4,11 @@ import io.github.acgs.cms.client.AuthorizationClient;
 import io.github.acgs.cms.client.RoleServiceClient;
 import io.github.acgs.cms.common.exception.UserException;
 import io.github.acgs.cms.entity.User;
+import io.github.acgs.cms.entity.role.Role;
+import io.github.acgs.cms.entity.token.Tokens;
 import io.github.acgs.cms.repository.UserRepository;
 import io.github.acgs.cms.service.UserService;
-import io.github.acgs.cms.token.Tokens;
+import io.github.acgs.cms.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -86,7 +88,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkRoleName(String roleName) {
-        return Objects.nonNull(roleServiceClient.getRoleByName(roleName));
+//        log.info("调用 role-service 远程服务中...");
+        ResponseVO<Role> res = roleServiceClient.getRoleByName(roleName);
+        if (res.isSuccess()) {
+//            log.info("role-service 远程服务调用成功");
+            return Objects.nonNull(res.getResult());
+        } else {
+//            log.warn("role-service 远程服务调用失败");
+            return false;
+        }
     }
 
     @Override
@@ -97,7 +107,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public Tokens getTokensByUsername(String username) {
         User user = getUserByUsername(username);
-        return authorizationClient.getTokens(user.getId().toHexString());
+        ResponseVO<Tokens> res = authorizationClient.getTokens(user.getId().toHexString());
+        if (res.isSuccess()) {
+            return res.getResult();
+        } else {
+            return null;
+        }
     }
 
     @Override

@@ -5,7 +5,7 @@ server:
 spring:
   application:
     # 服务名称
-    name: auth-service
+    name: authorization
   profiles:
     # 当前环境
     active: dev

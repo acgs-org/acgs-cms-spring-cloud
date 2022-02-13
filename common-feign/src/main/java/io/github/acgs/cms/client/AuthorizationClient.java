@@ -1,6 +1,8 @@
 package io.github.acgs.cms.client;
 
-import io.github.acgs.cms.token.Tokens;
+import io.github.acgs.cms.common.annotation.FeignLog;
+import io.github.acgs.cms.entity.token.Tokens;
+import io.github.acgs.cms.vo.ResponseVO;
 import org.bson.types.ObjectId;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +28,8 @@ public interface AuthorizationClient {
      * @return 双令牌封装类
      */
     @GetMapping("/tokens/{id}")
-    Tokens getTokens(@PathVariable("id") String id);
+    @FeignLog
+    ResponseVO<Tokens> getTokens(@PathVariable("id") String id);
 
     /**
      * <p>
@@ -36,7 +39,8 @@ public interface AuthorizationClient {
      * @return access_token
      */
     @GetMapping("/token/access/{id}")
-    String getAccessToken(@PathVariable("id") String id);
+    @FeignLog
+    ResponseVO<String> getAccessToken(@PathVariable("id") String id);
 
     /**
      * <p>
@@ -46,7 +50,8 @@ public interface AuthorizationClient {
      * @return 解密后的用户 id
      */
     @GetMapping("/access/{auth}")
-    ObjectId verificationAccessToken(@PathVariable("auth") String auth);
+    @FeignLog
+    ResponseVO<ObjectId> verificationAccessToken(@PathVariable("auth") String auth);
 
     /**
      * <p>
@@ -56,5 +61,6 @@ public interface AuthorizationClient {
      * @return 解密后的用户 id
      */
     @GetMapping("/refresh/{auth}")
-    ObjectId verificationRefreshToken(@PathVariable("auth") String auth);
+    @FeignLog
+    ResponseVO<ObjectId> verificationRefreshToken(@PathVariable("auth") String auth);
 }

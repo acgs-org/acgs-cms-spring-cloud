@@ -1,4 +1,4 @@
-package io.github.acgs.cms.configuration;
+package io.github.acgs.cms.common.configuration;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

@@ -32,4 +32,12 @@ public class Tokens {
     public String getRefreshToken() {
         return refreshToken;
     }
+
+    @Override
+    public String toString() {
+        return "Tokens{" +
+                "accessToken='" + accessToken + '\'' +
+                ", refreshToken='" + refreshToken + '\'' +
+                '}';
+    }
 }

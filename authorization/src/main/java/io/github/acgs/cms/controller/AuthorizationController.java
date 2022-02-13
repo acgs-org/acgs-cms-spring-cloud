@@ -5,6 +5,7 @@ import io.github.acgs.cms.token.Tokens;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  */
 @Api(tags = {"身份验证接口"})
+@Slf4j
 @RestController
 @RequestMapping("/authorization")
 @RequiredArgsConstructor
@@ -41,7 +43,10 @@ public class AuthorizationController {
     @GetMapping("/tokens/{id}")
     @ApiOperation(value = "获取双令牌方法")
     public Tokens getTokens(@PathVariable("id") String id) {
-        return jwt.generateTokens(id);
+        log.info("接收数据 /tokens/" + id);
+        Tokens tokens = jwt.generateTokens(id);
+        log.info("创建 Tokens: " + tokens);
+        return tokens;
     }
 
     /**

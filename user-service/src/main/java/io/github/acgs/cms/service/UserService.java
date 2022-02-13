@@ -1,7 +1,7 @@
 package io.github.acgs.cms.service;
 
 import io.github.acgs.cms.entity.User;
-import io.github.acgs.cms.token.Tokens;
+import io.github.acgs.cms.entity.token.Tokens;
 
 /**
  * <p>
