@@ -78,4 +78,17 @@ public class RoleController {
     public boolean remove(@ApiParam(value = "角色名称") @PathVariable("roleName") String roleName) {
         return roleService.removeRole(roleName);
     }
+
+    /**
+     * <p>
+     *     验证角色组信息
+     * </p>
+     * @param roles 待验证角色组名称
+     * @return 验证通过角色组信息
+     */
+    @ApiOperation(value = "验证角色组信息")
+    @PostMapping("/check")
+    public List<Role> checkRoles(@ApiParam(value = "待验证角色组名称") @RequestBody List<String> roles) {
+        return roleService.checkRoles(roles);
+    }
 }

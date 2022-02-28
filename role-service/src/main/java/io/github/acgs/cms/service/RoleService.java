@@ -54,4 +54,13 @@ public interface RoleService {
      * @return 删除结果
      */
     boolean removeRole(String roleName);
+
+    /**
+     * <p>
+     *     验证角色组信息
+     * </p>
+     * @param roles 待验证角色组名称
+     * @return 验证通过角色组信息
+     */
+    List<Role> checkRoles(List<String> roles);
 }

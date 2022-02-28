@@ -8,6 +8,7 @@ import io.github.acgs.cms.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -115,5 +116,17 @@ public class RoleServiceImpl implements RoleService {
         roleRepository.deleteRoleByName(roleName + UPDATE);
         roleRepository.deleteRoleByName(roleName + READ);
         return true;
+    }
+
+    @Override
+    public List<Role> checkRoles(List<String> roles) {
+        List<Role> list = new ArrayList<>();
+        roles.forEach(roleName -> {
+            Role result = roleRepository.findRoleByName(roleName);
+            if (Objects.nonNull(result)) {
+                list.add(result);
+            }
+        });
+        return list;
     }
 }
