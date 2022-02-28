@@ -1,6 +1,5 @@
 package io.github.acgs.cms.common.vo;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
@@ -31,7 +30,7 @@ public class ResponseVO<T> {
     @ApiModelProperty(value = "响应信息")
     private String message;
 
-    /** 返回结果 */
+    /** 响应结果 */
     @ApiModelProperty(value = "返回结果")
     private T result;
 

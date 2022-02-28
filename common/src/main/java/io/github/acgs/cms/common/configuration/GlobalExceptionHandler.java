@@ -28,7 +28,7 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
 
     @ResponseBody
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(BaseException.class)
     public ResponseVO<?> roleExceptionHandler(@NotNull BaseException error) {
         log.warn(error.getClass().getSimpleName() + " [" + error.getCode() + "] " + error.getMessage());
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
     }
 
     @ResponseBody
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(ValidatedException.class)
     public ResponseVO<?> ValidatedException(@NotNull ValidatedException error) {
         error.getErrors().forEach(e -> log.warn("参数校验异常: " + e.getDefaultMessage()));
