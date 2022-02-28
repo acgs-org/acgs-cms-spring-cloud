@@ -5,15 +5,21 @@ import io.github.acgs.cms.client.RoleServiceClient;
 import io.github.acgs.cms.common.exception.UserException;
 import io.github.acgs.cms.entity.User;
 import io.github.acgs.cms.entity.role.Role;
+import io.github.acgs.cms.entity.token.DecodeTokens;
 import io.github.acgs.cms.entity.token.Tokens;
 import io.github.acgs.cms.repository.UserRepository;
 import io.github.acgs.cms.service.UserService;
 import io.github.acgs.cms.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -88,13 +94,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkRoleName(String roleName) {
-//        log.info("调用 role-service 远程服务中...");
         ResponseVO<Role> res = roleServiceClient.getRoleByName(roleName);
         if (res.isSuccess()) {
-//            log.info("role-service 远程服务调用成功");
             return Objects.nonNull(res.getResult());
         } else {
-//            log.warn("role-service 远程服务调用失败");
             return false;
         }
     }
@@ -119,5 +122,34 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(User user) {
         userRepository.save(user);
         return true;
+    }
+
+    @Override
+    public List<Role> getUserRoles(@NotNull HttpServletRequest request) {
+        // 获取请求头信息
+        String auth = request.getHeader(HttpHeaders.AUTHORIZATION);
+        // 解析请求头信息
+        ResponseVO<DecodeTokens> res = authorizationClient.verificationAccessToken(auth);
+        if (res.isSuccess()) {
+            // 获取用户 id
+           ObjectId id = new ObjectId(res.getResult().getAccessToken());
+           // 通过 id 获取用户信息
+           User user = userRepository.findUserById(id);
+
+           // 验证获取的 user 信息
+            if (Objects.isNull(user)) {
+                throw new UserException(60201, "账号不存在");
+            }
+           // 获取用户信息保存的角色组信息并进行校验
+           List<String> rolesNames = user.getRoles();
+           ResponseVO<List<Role>> roles = roleServiceClient.checkRoles(rolesNames);
+           if (roles.isSuccess()) {
+               return roles.getResult();
+           } else {
+               return null;
+           }
+        } else {
+            return null;
+        }
     }
 }

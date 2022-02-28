@@ -19,10 +19,19 @@ public interface UserRepository extends MongoRepository<User, ObjectId> {
 
     /**
      * <p>
-     * 通过用户名称获取用户信息
+     *     通过用户名称获取用户信息
      * </p>
      * @param username 用户名称
      * @return 查询到的用户信息 | null
      */
     User findUserByUsername(String username);
+
+    /**
+     * <p>
+     *     通过用户 id 获取用户信息
+     * </p>
+     * @param id 用户 id
+     * @return 查询到的用户信息 | null
+     */
+    User findUserById(ObjectId id);
 }

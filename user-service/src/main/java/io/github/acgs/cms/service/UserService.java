@@ -1,7 +1,11 @@
 package io.github.acgs.cms.service;
 
 import io.github.acgs.cms.entity.User;
+import io.github.acgs.cms.entity.role.Role;
 import io.github.acgs.cms.entity.token.Tokens;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -73,4 +77,13 @@ public interface UserService {
      * @return 添加结果
      */
     boolean addUser(User user);
+
+    /**
+     * <p>
+     *     获取用户角色组方法
+     * </p>
+     * @param request 访问请求
+     * @return 角色组
+     */
+    List<Role> getUserRoles(HttpServletRequest request);
 }
