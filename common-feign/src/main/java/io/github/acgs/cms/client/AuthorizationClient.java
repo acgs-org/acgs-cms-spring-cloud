@@ -1,9 +1,9 @@
 package io.github.acgs.cms.client;
 
 import io.github.acgs.cms.common.annotation.FeignLog;
+import io.github.acgs.cms.entity.token.DecodeTokens;
 import io.github.acgs.cms.entity.token.Tokens;
 import io.github.acgs.cms.vo.ResponseVO;
-import org.bson.types.ObjectId;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,20 +47,20 @@ public interface AuthorizationClient {
      *     验证 access_token 方法
      * </p>
      * @param auth access_token 令牌
-     * @return 解密后的用户 id
+     * @return 解密后的 tokens 封装类
      */
     @GetMapping("/access/{auth}")
     @FeignLog
-    ResponseVO<ObjectId> verificationAccessToken(@PathVariable("auth") String auth);
+    ResponseVO<DecodeTokens> verificationAccessToken(@PathVariable("auth") String auth);
 
     /**
      * <p>
      *     验证 refresh_token 方法
      * </p>
      * @param auth refresh_token 令牌
-     * @return 解密后的用户 id
+     * @return 解密后的 tokens 封装类
      */
     @GetMapping("/refresh/{auth}")
     @FeignLog
-    ResponseVO<ObjectId> verificationRefreshToken(@PathVariable("auth") String auth);
+    ResponseVO<DecodeTokens> verificationRefreshToken(@PathVariable("auth") String auth);
 }
