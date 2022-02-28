@@ -3,7 +3,9 @@ package io.github.acgs.cms.filter;
 import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
+import io.github.acgs.cms.common.exception.TokenException;
 import io.github.acgs.cms.token.DoubleJWT;
+import io.github.acgs.cms.token.Tokens;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.jetbrains.annotations.NotNull;
@@ -58,6 +60,8 @@ public class AuthorizeFilter implements GlobalFilter {
         String LOGIN_PATH = "/user/login";
         // 注册请求访问路径
         String REGISTER_PATH = "/user/register";
+        // 刷新令牌请求
+        String REFRESH_PATH = "/refresh";
 
         if (Objects.equals(LOGIN_PATH, path) || Objects.equals(REGISTER_PATH, path)) {
             // 当前请求为 登录 或 注册 请求
@@ -76,6 +80,21 @@ public class AuthorizeFilter implements GlobalFilter {
             return exchange.getResponse().setComplete();
         }
 
+        if (Objects.equals(REFRESH_PATH, path)) {
+            // 当前请求为刷新令牌请求
+            // 获取 Authorization 中的用户 id
+            ObjectId id = jwt.decodeRefreshToken(auth).get("identity").as(ObjectId.class);
+            log.info("Token 令牌刷新: " + id.toHexString());
+            // 创建新的 Tokens 令牌对
+            Tokens tokens = jwt.generateTokens(id.toHexString());
+            // TODO: 添加令牌刷新操作
+            // 返回 response 结果
+//            exchange.getResponse().setStatusCode(HttpStatus.OK);
+            // 附带令牌信息
+//            exchange.getResponse().getHeaders().add(HttpHeaders.AUTHORIZATION, tokens.getAccessToken());
+            return exchange.getResponse().setComplete();
+        }
+
         // 验证 Authorization 中的信息
         try {
             // 获取 Authorization 中的用户 id
@@ -83,7 +102,12 @@ public class AuthorizeFilter implements GlobalFilter {
             log.info("Authorization: " + id.toHexString());
             // 放行请求
             return chain.filter(exchange).then(Mono.fromRunnable(() -> log.info("返回 [" + path + "]" + "响应结果")));
-        } catch (TokenExpiredException | InvalidClaimException e) {
+        } catch (TokenExpiredException e) {
+            log.warn("Token 令牌已过期");
+            // 拦截请求
+            // 拒绝访问
+            throw new TokenException(10001, "Token 令牌过期");
+        } catch (InvalidClaimException e) {
             log.warn("Token 令牌已损坏");
             // 拦截请求
             // 拒绝访问
