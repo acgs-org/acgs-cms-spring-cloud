@@ -3,9 +3,7 @@ package io.github.acgs.cms.filter;
 import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import io.github.acgs.cms.common.exception.TokenException;
 import io.github.acgs.cms.token.DoubleJWT;
-import io.github.acgs.cms.token.Tokens;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.jetbrains.annotations.NotNull;
@@ -85,14 +83,7 @@ public class AuthorizeFilter implements GlobalFilter {
             // 获取 Authorization 中的用户 id
             ObjectId id = jwt.decodeRefreshToken(auth).get("identity").as(ObjectId.class);
             log.info("Token 令牌刷新: " + id.toHexString());
-            // 创建新的 Tokens 令牌对
-            Tokens tokens = jwt.generateTokens(id.toHexString());
-            // TODO: 添加令牌刷新操作
-            // 返回 response 结果
-//            exchange.getResponse().setStatusCode(HttpStatus.OK);
-            // 附带令牌信息
-//            exchange.getResponse().getHeaders().add(HttpHeaders.AUTHORIZATION, tokens.getAccessToken());
-            return exchange.getResponse().setComplete();
+            return chain.filter(exchange);
         }
 
         // 验证 Authorization 中的信息
@@ -113,7 +104,8 @@ public class AuthorizeFilter implements GlobalFilter {
         } catch (TokenExpiredException e) {
             log.warn("Token 令牌已过期");
             // 拦截请求 拒绝访问
-            throw new TokenException(10001, "Token 令牌过期");
+            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
         } catch (InvalidClaimException e) {
             log.warn("Token 令牌已损坏");
             // 拦截请求
