@@ -86,4 +86,12 @@ public interface UserService {
      * @return 角色组
      */
     List<Role> getUserRoles(HttpServletRequest request);
+
+    /**
+     * <p>
+     *     刷新令牌方法
+     * </p>
+     * @return 刷新后令牌信息
+     */
+    Tokens refreshToken(HttpServletRequest request);
 }

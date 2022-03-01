@@ -1,8 +1,10 @@
 package io.github.acgs.cms.controller;
 
 import io.github.acgs.cms.entity.role.Role;
+import io.github.acgs.cms.entity.token.Tokens;
 import io.github.acgs.cms.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +41,21 @@ public class UserController {
      * @return 用户角色组
      */
     @GetMapping("/roles")
+    @ApiOperation(value = "用户权限获取接口")
     public List<Role> getUserRoles(HttpServletRequest request) {
         return userService.getUserRoles(request);
+    }
+
+    /**
+     * <p>
+     *     刷新 Tokens 令牌方法
+     * </p>
+     * @param request 访问请求
+     * @return 刷新后的 Tokens 令牌
+     */
+    @GetMapping("/refresh")
+    @ApiOperation(value = "刷新令牌接口")
+    public Tokens refreshToken(HttpServletRequest request) {
+        return userService.refreshToken(request);
     }
 }

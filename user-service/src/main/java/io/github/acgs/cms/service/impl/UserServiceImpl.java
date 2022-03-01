@@ -129,10 +129,10 @@ public class UserServiceImpl implements UserService {
         // 获取请求头信息
         String auth = request.getHeader(HttpHeaders.AUTHORIZATION);
         // 解析请求头信息
-        ResponseVO<DecodeTokens> res = authorizationClient.verificationAccessToken(auth);
-        if (res.isSuccess()) {
+        ResponseVO<DecodeTokens> tokens = authorizationClient.verificationAccessToken(auth);
+        if (tokens.isSuccess()) {
             // 获取用户 id
-           ObjectId id = new ObjectId(res.getResult().getAccessToken());
+           ObjectId id = new ObjectId(tokens.getResult().getAccessToken());
            // 通过 id 获取用户信息
            User user = userRepository.findUserById(id);
 
@@ -151,5 +151,22 @@ public class UserServiceImpl implements UserService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public Tokens refreshToken(@NotNull HttpServletRequest request) {
+        // 获取请求头信息
+        String auth = request.getHeader(HttpHeaders.AUTHORIZATION);
+        // 解析请求头信息
+        ResponseVO<DecodeTokens> id = authorizationClient.verificationRefreshToken(auth);
+        if (id.isSuccess()) {
+            // 创建新的 Tokens
+            ResponseVO<Tokens> tokens =  authorizationClient.getTokens(id.getResult().getRefreshToken());
+            if (tokens.isSuccess()) {
+                return tokens.getResult();
+            }
+        }
+        // 服务请求异常
+        return null;
     }
 }
