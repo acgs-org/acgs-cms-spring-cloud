@@ -61,7 +61,7 @@ public class AuthorizeFilter implements GlobalFilter {
         // 注册请求访问路径
         String REGISTER_PATH = "/user/register";
         // 刷新令牌请求
-        String REFRESH_PATH = "/refresh";
+        String REFRESH_PATH = "/user/refresh";
 
         if (Objects.equals(LOGIN_PATH, path) || Objects.equals(REGISTER_PATH, path)) {
             // 当前请求为 登录 或 注册 请求
@@ -101,11 +101,18 @@ public class AuthorizeFilter implements GlobalFilter {
             ObjectId id = jwt.decodeAccessToken(auth).get("identity").as(ObjectId.class);
             log.info("Authorization: " + id.toHexString());
             // 放行请求
-            return chain.filter(exchange).then(Mono.fromRunnable(() -> log.info("返回 [" + path + "]" + "响应结果")));
+            return chain.filter(exchange)
+                    .then(Mono.defer(() -> {
+                        // response 过滤器 刷新 accessToken 信息
+                        HttpHeaders headers = exchange.getResponse().getHeaders();
+                        String accessToken = jwt.generateAccessToken(id.toHexString());
+                        headers.add(HttpHeaders.AUTHORIZATION, accessToken);
+                        return chain.filter(exchange);
+                    }))
+                    .then(Mono.fromRunnable(() -> log.info("返回 [" + path + "]" + "响应结果")));
         } catch (TokenExpiredException e) {
             log.warn("Token 令牌已过期");
-            // 拦截请求
-            // 拒绝访问
+            // 拦截请求 拒绝访问
             throw new TokenException(10001, "Token 令牌过期");
         } catch (InvalidClaimException e) {
             log.warn("Token 令牌已损坏");
