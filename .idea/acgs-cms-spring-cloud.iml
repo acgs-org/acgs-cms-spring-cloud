@@ -9,6 +9,13 @@
       <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/httpRequests" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
+      <excludeFolder url="file://$MODULE_DIR$/authorization/target" />
+      <excludeFolder url="file://$MODULE_DIR$/common/target" />
+      <excludeFolder url="file://$MODULE_DIR$/common-auth/target" />
+      <excludeFolder url="file://$MODULE_DIR$/common-feign/target" />
+      <excludeFolder url="file://$MODULE_DIR$/gateway/target" />
+      <excludeFolder url="file://$MODULE_DIR$/role-service/target" />
+      <excludeFolder url="file://$MODULE_DIR$/user-service/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
