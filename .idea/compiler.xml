@@ -12,6 +12,7 @@
         <module name="common-feign" />
         <module name="role-service" />
         <module name="common-auth" />
+        <module name="log-service" />
         <module name="user-service" />
         <module name="gateway" />
       </profile>
@@ -24,6 +25,7 @@
       <module name="common-feign" target="15" />
       <module name="common-old" target="15" />
       <module name="gateway" target="15" />
+      <module name="log-service" target="15" />
       <module name="login-service" target="15" />
       <module name="register-service" target="15" />
       <module name="role-service" target="15" />
@@ -39,6 +41,7 @@
       <module name="common-feign" options="-parameters" />
       <module name="common-old" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="log-service" options="-parameters" />
       <module name="login-service" options="-parameters" />
       <module name="register-service" options="-parameters" />
       <module name="role-service" options="-parameters" />

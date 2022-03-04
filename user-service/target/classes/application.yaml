@@ -1,8 +1,0 @@
-spring:
-  data:
-    mongodb:
-      database: acgs
-      host: localhost
-      port: 27017
-      username: admin
-      password: admin

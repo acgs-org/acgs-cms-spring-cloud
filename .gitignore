@@ -3,5 +3,6 @@
 /common-auth/target
 /common-feign/target
 /gateway/target
+/log-service/target
 /role-service/target
 /user-service/target

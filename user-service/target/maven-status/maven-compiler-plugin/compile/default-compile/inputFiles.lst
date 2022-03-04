@@ -1,6 +1,0 @@
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/user-service/src/main/java/io/github/acgs/cms/entity/User.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/user-service/src/main/java/io/github/acgs/cms/dto/LoginDTO.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/user-service/src/main/java/io/github/acgs/cms/repository/UserRepository.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/user-service/src/main/java/io/github/acgs/cms/UserServiceApplication.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/user-service/src/main/java/io/github/acgs/cms/controller/RegisterController.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/user-service/src/main/java/io/github/acgs/cms/controller/LoginController.java

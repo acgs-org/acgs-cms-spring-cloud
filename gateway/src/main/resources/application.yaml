@@ -43,3 +43,8 @@ spring:
           uri: lb://user-service
           predicates:
             - Path=/user/**
+        # 日志服务模块
+        - id: log-service-route
+          uri: lb://log-service
+          predicates:
+            - Path=/log/**

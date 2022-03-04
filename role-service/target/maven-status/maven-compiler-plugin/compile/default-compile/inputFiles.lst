@@ -1,8 +1,0 @@
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/role-service/src/main/java/io/github/acgs/cms/controller/RoleController.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/role-service/src/main/java/io/github/acgs/cms/service/impl/RoleServiceImpl.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/role-service/src/main/java/io/github/acgs/cms/RoleServiceApplication.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/role-service/src/main/java/io/github/acgs/cms/constant/RoleNameSuffix.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/role-service/src/main/java/io/github/acgs/cms/service/RoleService.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/role-service/src/main/java/io/github/acgs/cms/entity/Role.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/role-service/src/main/java/io/github/acgs/cms/constant/RolePermission.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/role-service/src/main/java/io/github/acgs/cms/repository/RoleRepository.java

@@ -1,8 +1,0 @@
-io/github/acgs/cms/controller/RoleController.class
-io/github/acgs/cms/service/RoleService.class
-io/github/acgs/cms/entity/Role.class
-io/github/acgs/cms/RoleServiceApplication.class
-io/github/acgs/cms/constant/RoleNameSuffix.class
-io/github/acgs/cms/service/impl/RoleServiceImpl.class
-io/github/acgs/cms/constant/RolePermission.class
-io/github/acgs/cms/repository/RoleRepository.class

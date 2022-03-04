@@ -1,6 +1,0 @@
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/gateway/src/main/java/io/github/acgs/cms/filter/ResultFilter.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/gateway/src/main/java/io/github/acgs/cms/filter/AuthorizeFilter.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/gateway/src/main/java/io/github/acgs/cms/vo/ResponseVO.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/gateway/src/main/java/io/github/acgs/cms/advice/ResponseAdvice.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/gateway/src/main/java/io/github/acgs/cms/advice/ExceptionHandlerAdvice.java
-/Users/john/ProjectWorkSpace/acgs-cms-spring-cloud/gateway/src/main/java/io/github/acgs/cms/GatewayApplication.java

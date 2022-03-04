@@ -1,9 +1,11 @@
 package io.github.acgs.cms.service.impl;
 
 import io.github.acgs.cms.client.AuthorizationClient;
+import io.github.acgs.cms.client.LogServiceClient;
 import io.github.acgs.cms.client.RoleServiceClient;
 import io.github.acgs.cms.common.exception.UserException;
 import io.github.acgs.cms.entity.User;
+import io.github.acgs.cms.entity.log.LoginLog;
 import io.github.acgs.cms.entity.role.Role;
 import io.github.acgs.cms.entity.token.DecodeTokens;
 import io.github.acgs.cms.entity.token.Tokens;
@@ -13,6 +15,7 @@ import io.github.acgs.cms.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
@@ -41,12 +44,19 @@ public class UserServiceImpl implements UserService {
     /** 导入角色信息服务 feign 客户端接口 */
     private final RoleServiceClient roleServiceClient;
 
+    /** 导入日志服务 feign 客户端接口 */
+    private final LogServiceClient logServiceClient;
+
     /** 导入权限验证服务 feign 客户端接口 */
     private final AuthorizationClient authorizationClient;
 
-    public UserServiceImpl(UserRepository userRepository, RoleServiceClient roleServiceClient, AuthorizationClient authorizationClient) {
+    public UserServiceImpl(UserRepository userRepository,
+                           RoleServiceClient roleServiceClient,
+                           LogServiceClient logServiceClient,
+                           AuthorizationClient authorizationClient) {
         this.userRepository = userRepository;
         this.roleServiceClient = roleServiceClient;
+        this.logServiceClient = logServiceClient;
         this.authorizationClient = authorizationClient;
         this.initDatabase();
     }
@@ -110,8 +120,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public Tokens getTokensByUsername(String username) {
         User user = getUserByUsername(username);
+
         ResponseVO<Tokens> res = authorizationClient.getTokens(user.getId().toHexString());
+
+        LoginLog loginLog = new LoginLog();
+        BeanUtils.copyProperties(user, loginLog);
+        loginLog.setLoginTime(LocalDateTime.now());
+
         if (res.isSuccess()) {
+            logServiceClient.saveLoginLog(loginLog);
             return res.getResult();
         } else {
             return null;
